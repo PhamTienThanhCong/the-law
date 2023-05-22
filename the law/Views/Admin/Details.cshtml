@@ -1,0 +1,35 @@
+﻿@model the_law.Models.law
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    <h3>Xem chi tiết luật @Html.DisplayFor(model => model.dieu)</h3>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            <b>Điều: </b>
+            @Html.DisplayFor(model => model.dieu)
+        </dd>
+
+        <dd>
+            <b>Tên: </b>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <p>
+            <b>Nội Dung: </b>
+            <span style="white-space: pre-line">
+                @Html.DisplayFor(model => model.noidung)
+            </span>
+        </p>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

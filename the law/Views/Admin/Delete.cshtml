@@ -1,0 +1,51 @@
+﻿@model the_law.Models.law
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">Xác nhận xóa bỏ điều luật</h2>
+
+<h3 class="text-center">Bạn có chắc chắn xóa bỏ điều luật này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Điều:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dieu)
+        </dd>
+
+        <dt>
+            Tên điều luật:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <dd>
+            <b>
+                Nội dung:
+            </b>
+            <span style="white-space: pre-line">
+                @Html.DisplayFor(model => model.noidung)
+            </span>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> | 
+            <button type="button" class="btn btn-link">
+                @Html.ActionLink("Trở lại danh sách", "Index")
+            </button>
+        </div>
+    }
+</div>

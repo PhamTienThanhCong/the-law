@@ -1,0 +1,84 @@
+﻿@model the_law.Models.law
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <style>
+        .custom-button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            .custom-button:hover {
+                background-color: #0056b3;
+            }
+
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+        }
+        .form-control{
+            max-width: none;
+        }
+        .form-group{
+            margin-bottom: 20px;
+        }
+        textarea{
+            height: 300px
+        }
+    </style>
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3 class="text-center"> Thêm luật vào trang web</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <b>Điều:</b>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.dieu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dieu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>Tên:</b>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>Nội dung:</b>
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.noidung, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="display:flex">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm Luật mới" class="btn btn-info" style="border:1px solid #ccc" />
+                </div>
+            </div>
+        </div>
+
+
+        <button class="custom-button" style="color:aliceblue">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "back-link" })
+        </button>
+    </div>
+}

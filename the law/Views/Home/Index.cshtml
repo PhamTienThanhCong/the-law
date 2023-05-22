@@ -1,0 +1,86 @@
+﻿@model IEnumerable<the_law.Models.law>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<style>
+    .search-input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 250px
+    }
+
+    .search-button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .law-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .law-table th, .law-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .law-table th {
+            background-color: #f5f5f5;
+        }
+
+    .details-link {
+        color: #007bff;
+    }
+</style>
+
+<form method="get">
+    <p>
+        @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "search-input", placeholder = "Nhập tên luật hoặc nội dung..." })
+        <input type="submit" value="Tìm kiếm" class="search-button" />
+    </p>
+</form>
+
+<table class="table law-table">
+
+
+
+    <tr>
+        <th>
+            Điều
+        </th>
+        <th>
+            Tên luật
+        </th>
+        <th>
+            Xem chi tiết
+        </th>
+    </tr>
+    @foreach (var item in Model.Take(20))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten)
+            </td>
+            <td>
+                @Html.ActionLink("Xem chi tiết", "Details", new { id = item.id }, new { @class = "details-link" })
+            </td>
+        </tr>
+
+    }
+</table>
